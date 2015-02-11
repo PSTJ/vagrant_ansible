@@ -1,0 +1,8 @@
+geerlingguy.nodejs
+geerlingguy.passenger
+ANXS.mysql
+rvm_io.rvm1-ruby
+DavidWittman.redis
+azavea.elasticsearch
+kamaln7.swapfile
+ANXS.git

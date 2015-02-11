@@ -1,0 +1,14 @@
+---
+rvm1_rubies:
+  - 'ruby-2.1.2'
+mysql_port: 3306                        # The port on which mysql listens
+mysql_bind_address: "0.0.0.0"           # The address the mysql server binds on
+mysql_root_password: 'ems32'             # The root password
+mysql_databases:
+  - name: ems32_development
+  - name: ems32_test
+swapfile_size: 1GB
+swapfile_swappiness: 10
+git_install_from_source: no
+git_prefix: "/usr/local"
+git_version: "2.3.0"

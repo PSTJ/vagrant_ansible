@@ -1,0 +1,29 @@
+---
+- hosts: all
+  gather_facts: yes
+  sudo: yes
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - rvm_io.rvm1-ruby
+    - geerlingguy.nodejs
+    - geerlingguy.passenger
+    - ANXS.mysql
+    - DavidWittman.redis
+    - azavea.elasticsearch
+    - kamaln7.swapfile
+    - ANXS.git
+
+  tasks:
+    # Install dependencies.
+    - name: Install dependencies other than role.
+      apt: "name={{ item }} state=present"
+      with_items:
+        - zlib1g-dev
+        - libsqlite3-dev
+        - imagemagick
+        - libxml2-dev
+        - freetds-dev
+

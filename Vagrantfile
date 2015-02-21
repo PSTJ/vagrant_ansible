@@ -6,7 +6,6 @@ required_plugins.each do |plugin|
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
   # Use Ubuntu 14.04 Trusty Tahr 32-bit as our operating system
   config.vm.box = "ubuntu/trusty64"
   config.vm.provider :virtualbox do |vb|
@@ -35,21 +34,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
     }
   end
+  
   config.ssh.insert_key = false
-  config.vm.define :demo do |demo|
+    config.vm.define :demo do |demo|
   end
+  
   config.vm.network :private_network, ip: "192.168.33.10"
   # Optimize performance: Use NFS for folder sync
   config.vm.synced_folder ".", "/ems", type: "nfs"
 
-    config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/playbook.yml"
-      ansible.inventory_path = "provisioning/inventory"
-      ansible.sudo = true
-    end
-  
-
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/playbook.yml"
+    ansible.inventory_path = "provisioning/inventory"
+    ansible.sudo = true
+  end
+    
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
   config.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
-    
 end
